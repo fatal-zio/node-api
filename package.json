@@ -1,0 +1,26 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "Basic NodeJS API example.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fatal-zio/node-api.git"
+  },
+  "author": "Jayme Desrosiers",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fatal-zio/node-api/issues"
+  },
+  "homepage": "https://github.com/fatal-zio/node-api#readme",
+  "prettier": {
+    "semi": true,
+    "singleQuote": true
+  },
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
