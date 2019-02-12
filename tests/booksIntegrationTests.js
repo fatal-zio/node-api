@@ -11,7 +11,7 @@ const Book = mongoose.model('Book');
 const agent = request.agent(app);
 
 describe('Book CRUD Tests', () => {
-  it('should allow a book to be posted and return read = false and an _id', done => {
+  it('should allow a book to be posted and return read = false and an _id', (done) => {
     const bookPost = { title: 'My Book', author: 'Joe', genre: 'Fiction' };
     agent
       .post('/api/books')
@@ -24,12 +24,12 @@ describe('Book CRUD Tests', () => {
       });
   });
 
-  afterEach(done => {
+  afterEach((done) => {
     Book.deleteMany({}).exec();
     done();
   });
 
-  after(done => {
+  after((done) => {
     mongoose.connection.close();
     app.server.close(done());
   });

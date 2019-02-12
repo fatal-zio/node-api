@@ -1,27 +1,27 @@
-const should = require('should');
+require('should');
 const sinon = require('sinon');
 const booksController = require('../controllers/booksController');
 
 describe('Books controller tests:', () => {
   describe('Post', () => {
     it('should not allow an empty title on post', () => {
-      const Book = function(book) {
+      const book = function () {
         this.save = () => {};
       };
 
       const req = {
         body: {
-          author: 'Jon'
-        }
+          author: 'Jon',
+        },
       };
 
       const res = {
         status: sinon.spy(),
         send: sinon.spy(),
-        json: sinon.spy()
+        json: sinon.spy(),
       };
 
-      const controller = booksController(Book);
+      const controller = booksController(book);
       controller.post(req, res);
 
       res.status

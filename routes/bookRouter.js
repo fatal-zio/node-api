@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 const express = require('express');
-const booksController = require('../controllers/booksController')
+const booksController = require('../controllers/booksController');
 
 function routes(Book) {
   const bookRouter = express.Router();
@@ -35,7 +35,7 @@ function routes(Book) {
       book.author = req.body.author;
       book.genre = req.body.genre;
       book.read = req.body.read;
-      req.book.save(err => {
+      req.book.save((err) => {
         if (err) {
           return res.send(err);
         }
@@ -53,12 +53,12 @@ function routes(Book) {
         delete req.body._id;
       }
 
-      Object.entries(req.body).forEach(item => {
+      Object.entries(req.body).forEach((item) => {
         const key = item[0];
         const value = item[1];
         book[key] = value;
       });
-      req.book.save(err => {
+      req.book.save((err) => {
         if (err) {
           return res.send(err);
         }
@@ -66,7 +66,7 @@ function routes(Book) {
       });
     })
     .delete((req, res) => {
-      req.book.remove(err => {
+      req.book.remove((err) => {
         if (err) {
           return res.send(err);
         }
