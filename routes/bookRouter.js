@@ -27,7 +27,15 @@ function routes(Book) {
 
   bookRouter
     .route('/books/:bookId')
-    .get((req, res) => res.json(req.book))
+    .get((req, res) => {
+      const returnBook = req.book.toJSON();
+      returnBook.links = {};
+      const genre = req.book.genre.replace(' ', '%20');
+      returnBook.links.FilterByThisGenre = `http://${
+        req.headers.host
+      }/api/books/?genre=${genre}`;
+      res.json(returnBook);
+    })
     .put((req, res) => {
       const { book } = req;
 
@@ -35,7 +43,7 @@ function routes(Book) {
       book.author = req.body.author;
       book.genre = req.body.genre;
       book.read = req.body.read;
-      req.book.save((err) => {
+      req.book.save(err => {
         if (err) {
           return res.send(err);
         }
@@ -53,12 +61,12 @@ function routes(Book) {
         delete req.body._id;
       }
 
-      Object.entries(req.body).forEach((item) => {
+      Object.entries(req.body).forEach(item => {
         const key = item[0];
         const value = item[1];
         book[key] = value;
       });
-      req.book.save((err) => {
+      req.book.save(err => {
         if (err) {
           return res.send(err);
         }
@@ -66,7 +74,7 @@ function routes(Book) {
       });
     })
     .delete((req, res) => {
-      req.book.remove((err) => {
+      req.book.remove(err => {
         if (err) {
           return res.send(err);
         }
